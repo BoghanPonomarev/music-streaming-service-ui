@@ -16,14 +16,8 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Test pipeline!
+          Learn React
         </a>
-		<br></br>
-		<form method="POST" action="http://uplan-monolith-dev.us-east-2.elasticbeanstalk.com/api/v1/auth/singin">
-		email: <input type="text" name="email"></input><br></br>
-		password: <input type="password" name="password"></input><br></br>
-		<input type="submit" value="submit"></input>
-		</form>
       </header>
     </div>
   );
