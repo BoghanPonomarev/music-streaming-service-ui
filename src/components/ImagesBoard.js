@@ -19,7 +19,6 @@ import twelve from "../images/thumbs/12.jpg";
 
 
 
-
 function ImagesBoard(props) {
     return (
         <div id="main">
