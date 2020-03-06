@@ -20,6 +20,9 @@ export class AdminStreamPage extends React.Component {
             <div id="stream-page">
                 <h1 id="stream-title"></h1>
                 <div id="stream-status"></div>
+                <div id={"animation-block"}>
+                Animation: <br/><img id='admin-gif'></img>
+                </div>
                 {this.requestStream()}
             </div>
         );
@@ -35,8 +38,9 @@ export class AdminStreamPage extends React.Component {
             type: 'get',
             success: function (response) {
                 console.log(response);
-                $("#stream-title").append(response.streamName)
-                $("#stream-status").append("Status: " + response.status)
+                $("#stream-title").append(response.streamName);
+                $("#stream-status").append("Status: " + response.status);
+                $("#admin-gif").attr("src", constants.SERVER_DOMAIN + '/api/v1/videos/' + response.videoIdList[0]);
             },
             error: function(jqXHR){
                 console.log(jqXHR);
