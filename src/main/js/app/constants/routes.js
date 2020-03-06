@@ -9,5 +9,7 @@ export const home = () => `/${publicPath}/home`;
 
 export const play = () => `/${publicPath}/play`;
 
-export const postPage = () =>  `/${publicPath}/:login/branch/:branch_name/post/:post_id`;
+export const adminStreamList = () => `/${publicPath}/streams`;
+
+export const adminStreamPage = () =>  `/${publicPath}/streams/:streamName`;
 
