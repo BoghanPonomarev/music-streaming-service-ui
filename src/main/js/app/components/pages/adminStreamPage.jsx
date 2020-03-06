@@ -20,8 +20,13 @@ export class AdminStreamPage extends React.Component {
             <div id="stream-page">
                 <h1 id="stream-title"></h1>
                 <div id="stream-status"></div>
+                <br/>
                 <div id={"animation-block"}>
                 Animation: <br/><img id='admin-gif'></img>
+                </div>
+                <br/>
+                <div id="audio-block">
+                <h3>Audios</h3>
                 </div>
                 {this.requestStream()}
             </div>
@@ -41,6 +46,11 @@ export class AdminStreamPage extends React.Component {
                 $("#stream-title").append(response.streamName);
                 $("#stream-status").append("Status: " + response.status);
                 $("#admin-gif").attr("src", constants.SERVER_DOMAIN + '/api/v1/videos/' + response.videoIdList[0]);
+
+                var audioList = response.audioIdList;
+                for(var i=0;i<audioList.length;i++) {
+                    $("#audio-block").append("<audio controls><source src='"+constants.SERVER_DOMAIN + '/api/v1/audios/'+ audioList[i] +"'></source></audio><br/>")
+                }
             },
             error: function(jqXHR){
                 console.log(jqXHR);
