@@ -3,15 +3,16 @@ import {connect} from 'react-redux';
 
 import '../../../../resources/static/assets/style/App.css';
 import '../../../../resources/static/assets/style/main.css';
+import Hls from "hls.js";
 
-export function Play() {
+export function Player() {
 
     return (
         <div>
             <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet"/>
 
-            <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
             <video id="video" width="420" height="310" controls></video>
+            <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
             <script>
                 {setUpHls()}
             </script>
@@ -20,7 +21,6 @@ export function Play() {
 }
 
 export function setUpHls() {
-
     if (Hls.isSupported()) {
         var video = document.getElementById('video');
 
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
     value: state.state.value
 });
 
-export default connect(mapStateToProps)(Play);
+export default connect(mapStateToProps)(Player);
