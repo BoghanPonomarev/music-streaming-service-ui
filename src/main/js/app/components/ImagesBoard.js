@@ -13,9 +13,7 @@ import six from "../../../../main/resources/static/assets/images/thumbs/06.jpg";
 import seven from "../../../../main/resources/static/assets/images/thumbs/07.jpg";
 import eight from "../../../../main/resources/static/assets/images/thumbs/08.jpg";
 import nine from "../../../../main/resources/static/assets/images/thumbs/09.jpg";
-import ten from "../../../../main/resources/static/assets/images/thumbs/10.jpg";
-import eleven from "../../../../main/resources/static/assets/images/thumbs/11.jpg";
-import twelve from "../../../../main/resources/static/assets/images/thumbs/12.jpg";
+
 
 
 
@@ -31,9 +29,6 @@ function ImagesBoard(props) {
             <ImageBox imagePath={seven}/>
             <ImageBox imagePath={eight}/>
             <ImageBox imagePath={nine}/>
-            <ImageBox imagePath={ten}/>
-            <ImageBox imagePath={eleven}/>
-            <ImageBox imagePath={twelve}/>
         </div>
     );
 }
