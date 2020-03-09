@@ -2,7 +2,14 @@
  margin-left: 40%;
 }
 
+#admin-video{
+ width: 300px;
+    height: 200px;
+}
+
 #stream-status {
+    position: relative;
+    float: left;
     margin-left: 10%;
 }
 

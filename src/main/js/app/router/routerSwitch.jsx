@@ -9,7 +9,6 @@ import AdminStreamPage from 'app/components/pages/adminStreamPage';
 export default () => (
     <Switch>
         <Route exact path={routes.index()} component={HomeLayout}/>
-        <Route exact path={routes.home()} component={HomeLayout}/>
         <Route exact path={routes.play()} component={Player}/>
         <Route exact path={routes.adminStreamList()} component={AdminStreamsList}/>
         <Route exact path={routes.adminStreamPage()} component={AdminStreamPage}/>

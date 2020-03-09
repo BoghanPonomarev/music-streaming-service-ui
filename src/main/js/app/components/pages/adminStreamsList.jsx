@@ -17,19 +17,28 @@ export class AdminStreamsList extends React.Component {
         super(props);
         this.props = props;
         this.requestStreamList = this.requestStreamList.bind(this);
+        this.requestNewStreamCreation = this.requestNewStreamCreation.bind(this);
     }
 
     render() {
         return (
+            <div id="admin-stream-list-wrapper">
             <div id="stream-list">
                 <h1>Stream list</h1>
                 {this.requestStreamList()}
+            </div>
+                <div id="new-stream-block">
+                    <h1>Create new stream</h1>
+                    <form id="new-stream-form">
+                        Stream name: <input id="new-stream-name"/>
+                    </form>
+                <button id="add-new-stream-btn" onClick={this.requestNewStreamCreation}>submit</button>
+                </div>
             </div>
         );
     }
 
     requestStreamList(){
-
         $.ajax({
             cache:false,
             contentType: false,
@@ -41,7 +50,7 @@ export class AdminStreamsList extends React.Component {
                 for(var i=0;i<response.length;i++) {
                     var streamName = response[i].streamName;
                     console.log(streamName);
-                    $("#stream-list").append("<a href='/"+  publicPath +"/streams/" + streamName +"' >" + streamName + "</a> status:" + response[i].status + "<br>")
+                    $("#stream-list").append("<a href='/"+  publicPath +"/admin/streams/" + streamName +"' >" + streamName + "</a> status:" + response[i].status + "<br>")
                 }
             },
             error: function(jqXHR){
@@ -51,6 +60,23 @@ export class AdminStreamsList extends React.Component {
         });
     }
 
+    requestNewStreamCreation() {
+        $.ajax({
+            cache:false,
+            contentType: false,
+            processData: false,
+            url: constants.SERVER_DOMAIN + '/api/v1/streams/' + $("#new-stream-name").val(),
+            type: 'post',
+            success: function (response) {
+                console.log(response);
+                window.location.reload(false);
+            },
+            error: function(jqXHR){
+                console.log(jqXHR);
+
+            }
+        });
+    }
 }
 
 export default AdminStreamsList;
