@@ -76,6 +76,11 @@ export class AdminStreamPage extends React.Component {
                 if(response.status === "CREATED") {
                     $("#update-stream-status-btn").append("COMPILE");
                     $("#update-stream-status-btn").on('click', this.requestStreamStatusChange.bind(this, "CREATED"));
+                } else  if(response.status === "COMPILED") {
+                    $("#update-stream-status-btn").append("START");
+                    $("#update-stream-status-btn").on('click', this.requestStreamStatusChange.bind(this, "COMPILED"));
+                } else if(response.status === "PLAYING") {
+                    $("#update-stream-status-btn").append("STOP");
                 }
             },
             error: function(jqXHR){
@@ -92,6 +97,21 @@ export class AdminStreamPage extends React.Component {
                 processData: false,
                 contentType: false,
                 url: constants.SERVER_DOMAIN + '/api/v1/streams/' + this.props.match.params.streamName +"/compile",
+                type: 'post',
+                success: function (response) {
+                    console.log(response);
+                    window.location.reload(false);
+                },
+                error: function(jqXHR){
+                    console.log(jqXHR);
+                }
+            });
+        } else if(status === "COMPILED"){
+            $.ajax({
+                cache: false,
+                processData: false,
+                contentType: false,
+                url: constants.SERVER_DOMAIN + '/api/v1/streams/' + this.props.match.params.streamName +"/play",
                 type: 'post',
                 success: function (response) {
                     console.log(response);
