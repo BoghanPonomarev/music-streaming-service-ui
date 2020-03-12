@@ -9,6 +9,7 @@ import '../../../../resources/static/assets/style/video.css';
 
 import ReactHLS from 'react-hls-player';
 import Hls from "hls.js";
+import {BrowserRouter as Router, Link} from "react-router-dom";
 
 export class Player extends React.Component {
 
@@ -21,10 +22,16 @@ export class Player extends React.Component {
     render() {
         return (
             <div>
+
                 <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet"/>
+                <Router>
+                    <Link to="/application" component >back</Link>
+                </Router>
 
                 <div id="video-wrapper">
-                    <ReactHLS url={constants.SERVER_DOMAIN + "/api/v1/streams/" + this.props.match.params.streamName + "/playlist"} autoplay='true'/>
+                    <ReactHLS
+                        url={constants.SERVER_DOMAIN + "/api/v1/streams/" + this.props.match.params.streamName + "/playlist"}
+                        autoplay='true'/>
                 </div>
             </div>
         );
