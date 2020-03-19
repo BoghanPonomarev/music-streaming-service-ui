@@ -4,7 +4,8 @@ import * as routes from 'app/constants/routes';
 import Player from 'app/components/pages/player';
 import HomeLayout from 'app/components/pages/home';
 import AdminStreamsList from 'app/components/pages/adminStreamsList';
-import AdminStreamPage from 'app/components/pages/adminStreamPage';
+import AdminStreamPage from 'app/components/pages/adminStreamPage'
+import AdminLogin from 'app/components/pages/adminLogin';
 
 export default () => (
     <Switch>
@@ -12,5 +13,6 @@ export default () => (
         <Route exact path={routes.play()} component={Player}/>
         <Route exact path={routes.adminStreamList()} component={AdminStreamsList}/>
         <Route exact path={routes.adminStreamPage()} component={AdminStreamPage}/>
+        <Route exact path={routes.adminLoginPage()} component={AdminLogin}/>
     </Switch>
 );

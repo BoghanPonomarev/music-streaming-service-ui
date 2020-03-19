@@ -18,9 +18,12 @@ export class AdminStreamsList extends React.Component {
         this.props = props;
         this.requestStreamList = this.requestStreamList.bind(this);
         this.requestNewStreamCreation = this.requestNewStreamCreation.bind(this);
+        this.requestDeleteStream = this.requestDeleteStream.bind(this);
     }
 
     render() {
+        const token = localStorage.getItem("token");
+        console.log("RENDER TOKEN: " + token);
         return (
             <div id="admin-stream-list-wrapper">
             <div id="stream-list">
@@ -39,10 +42,11 @@ export class AdminStreamsList extends React.Component {
     }
 
     requestStreamList(){
+        const token = localStorage.getItem('token');
+
         $.ajax({
-            cache:false,
-            contentType: false,
-            processData: false,
+            requestDeleteStream: this.requestDeleteStream,
+            headers: {'Authorization': token},
             url: constants.SERVER_DOMAIN + '/api/v1/playlists',
             type: 'get',
             success: function (response) {
@@ -50,8 +54,27 @@ export class AdminStreamsList extends React.Component {
                 for(var i=0;i<response.length;i++) {
                     var streamName = response[i].streamName;
                     console.log(streamName);
-                    $("#stream-list").append("<a href='/"+  publicPath +"/admin/streams/" + streamName +"' >" + streamName + "</a> status:" + response[i].status + "<br>")
+                    $("#stream-list").append("<a href='/"+  publicPath +"/admin/streams/" + streamName +"' >" + streamName + "</a> status:" + response[i].status);
+                    $("#stream-list").append("<button id='delete-stream-btn-"+streamName+"'>Delete</button> </br>");
+                    $("#delete-stream-btn-"+streamName).on('click', this.requestDeleteStream.bind(this, streamName));
                 }
+            },
+            error: function(jqXHR){
+                console.log(jqXHR);
+            }
+        });
+    }
+
+    requestNewStreamCreation() {
+        var token = localStorage.getItem('token');
+
+        $.ajax({
+            url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + $("#new-stream-name").val(),
+            type: 'post',
+            headers: { "Authorization": token},
+            success: function (response) {
+                console.log(response);
+                window.location.reload(false);
             },
             error: function(jqXHR){
                 console.log(jqXHR);
@@ -60,20 +83,20 @@ export class AdminStreamsList extends React.Component {
         });
     }
 
-    requestNewStreamCreation() {
+    requestDeleteStream(streamName) {
+        const token = localStorage.getItem('token');
+
         $.ajax({
-            cache:false,
-            contentType: false,
-            processData: false,
-            url: constants.SERVER_DOMAIN + '/api/v1/streams/' + $("#new-stream-name").val(),
-            type: 'post',
+            requestDeleteStream: this.requestDeleteStream,
+            headers: {'Authorization': token},
+            url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + streamName,
+            type: 'delete',
             success: function (response) {
                 console.log(response);
                 window.location.reload(false);
             },
             error: function(jqXHR){
                 console.log(jqXHR);
-
             }
         });
     }

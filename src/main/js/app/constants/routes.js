@@ -6,6 +6,8 @@ export const index = () => `/${publicPath}/`;
 
 export const play = () => `/${publicPath}/streams/:streamName`;
 
+export const adminLoginPage = () => `/${publicPath}/admin/login`;
+
 export const adminStreamList = () => `/${publicPath}/admin/streams`;
 
 export const adminStreamPage = () =>  `/${publicPath}/admin/streams/:streamName`;

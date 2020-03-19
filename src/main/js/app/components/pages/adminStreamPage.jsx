@@ -49,13 +49,16 @@ export class AdminStreamPage extends React.Component {
     }
 
     requestStream(){
+        const token = localStorage.getItem("token");
+
         $.ajax({
             requestDeleteAudio: this.requestDeleteAudio,
             requestStreamStatusChange: this.requestStreamStatusChange,
+            headers: {"Authorization": token},
             cache:false,
             contentType: false,
             processData: false,
-            url: constants.SERVER_DOMAIN + '/api/v1/playlists/' + this.props.match.params.streamName,
+            url: constants.SERVER_DOMAIN + '/api/v1/admin/playlists/' + this.props.match.params.streamName,
             type: 'get',
             success: function (response) {
                 console.log(response);
@@ -90,13 +93,15 @@ export class AdminStreamPage extends React.Component {
     }
 
     requestStreamStatusChange(status) {
-        console.log("From func " + status);
+        const token = localStorage.getItem('token');
+
         if(status === "CREATED") {
             $.ajax({
+                headers: {"Authorization": token},
                 cache: false,
                 processData: false,
                 contentType: false,
-                url: constants.SERVER_DOMAIN + '/api/v1/streams/' + this.props.match.params.streamName +"/compile",
+                url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/compile",
                 type: 'post',
                 success: function (response) {
                     console.log(response);
@@ -108,10 +113,11 @@ export class AdminStreamPage extends React.Component {
             });
         } else if(status === "COMPILED"){
             $.ajax({
+                headers: {'Authorization': token},
                 cache: false,
                 processData: false,
                 contentType: false,
-                url: constants.SERVER_DOMAIN + '/api/v1/streams/' + this.props.match.params.streamName +"/play",
+                url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/play",
                 type: 'post',
                 success: function (response) {
                     console.log(response);
@@ -141,14 +147,16 @@ export class AdminStreamPage extends React.Component {
     requestUpdateVideo(video){
         var videoData = new FormData();
         videoData.append('video', video);
+        const token = localStorage.getItem('token');
 
         $.ajax({
+            headers: {'Authorization': token},
             cache: false,
             processData: false,
             contentType: false,
             header: {"Content-type" : "multipart/form-data"},
             data: videoData,
-            url: constants.SERVER_DOMAIN + '/api/v1/streams/' + this.props.match.params.streamName +"/video",
+            url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/video",
             type: 'put',
             success: function (response) {
                 console.log(response);
@@ -163,14 +171,16 @@ export class AdminStreamPage extends React.Component {
     requestUpdateAudio(audio){
         var videoData = new FormData();
         videoData.append('audio', audio);
+        const token = localStorage.getItem('token');
 
         $.ajax({
+            headers: {'Authorization': token},
             cache: false,
             processData: false,
             contentType: false,
             header: {"Content-type" : "multipart/form-data"},
             data: videoData,
-            url: constants.SERVER_DOMAIN + '/api/v1/streams/' + this.props.match.params.streamName +"/audio",
+            url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/audio",
             type: 'post',
             success: function (response) {
                 console.log(response);
@@ -183,12 +193,15 @@ export class AdminStreamPage extends React.Component {
     }
 
     requestDeleteAudio(audioId) {
+        const token = localStorage.getItem('token');
+
         $.ajax({
+            headers: {'Authorization': token},
             audioId: audioId,
             cache: false,
             processData: false,
             contentType: false,
-            url: constants.SERVER_DOMAIN + '/api/v1/audios/' + audioId,
+            url: constants.SERVER_DOMAIN + '/api/v1/admin/audios/' + audioId,
             type: 'delete',
             success: function (response) {
                 console.log(response);
