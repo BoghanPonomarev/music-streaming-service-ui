@@ -21,7 +21,7 @@
 		-ms-transform: rotate(359deg);
 		transform: rotate(359deg);
 	}
-}
+}header
 
 @-webkit-keyframes spinner {
 	0% {
@@ -192,7 +192,7 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #a0a0a1;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: "Comic Sans MS";
 		font-size: 15pt;
 		font-weight: 300;
 		letter-spacing: 0.025em;

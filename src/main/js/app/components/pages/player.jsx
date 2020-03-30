@@ -11,6 +11,7 @@ import ReactHLS from 'react-hls-player';
 import Hls from "hls.js";
 import {BrowserRouter as Router,Route,Switch, Link} from "react-router-dom";
 import {HomeLayout} from "./home";
+import Header from "../Header";
 
 
 export class Player extends React.Component {
@@ -18,12 +19,12 @@ export class Player extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
-        this.setUpHls = this.setUpHls.bind(this);
     }
 
     render() {
         return (
-            <div>
+            <div className="App">
+                <Header/>
 
                 <Link to="/application" >Back</Link>
                 <Switch>
@@ -37,22 +38,6 @@ export class Player extends React.Component {
                 </div>
             </div>
         );
-    }
-
-
-    setUpHls() {
-        if (Hls.isSupported()) {
-            var video = document.getElementById('video');
-
-            var hls = new Hls();
-            hls.loadSource(constants.SERVER_DOMAIN + "/api/v1/streams/" + this.props.match.params.streamName + "/playlist");
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                console.log("MANIFEST_PARSED");
-                video.play();
-            });
-
-        }
     }
 }
 

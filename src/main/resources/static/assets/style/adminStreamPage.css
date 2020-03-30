@@ -13,16 +13,15 @@
     margin-left: 10%;
 }
 
-#animation-block {
+#update-stream-status-btn , #compile-stream-btn-block, #stream-title-block,
+#stream-portion-id, #stream-status, #animation-block, #audio-block{
     margin-left: 10%;
 }
 
-#audio-block{
-    margin-left: 10%;
-}
 
 #admin-gif {
     margin-left: 10%;
     height: 200px;
     width: 200px;
 }
+
