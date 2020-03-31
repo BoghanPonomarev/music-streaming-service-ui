@@ -19,7 +19,7 @@ export default () => ({
         host: "localhost"
     },
     entry: {
-        index: path.join(__dirname, 'src/main/js/app/index.jsx')
+        index: path.join(__dirname, 'src/index.jsx')
     },
     output: {
         filename: 'assets/javascripts/[hash].js',

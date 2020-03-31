@@ -12,5 +12,6 @@ COPY ./ /app
 RUN npm install --silent
 RUN npm install react-scripts@3.0.1 -g --silent
 
+EXPOSE 8080
 # start app
-CMD ["npm", "start"]
+ENTRYPOINT ["npm", "start"]
