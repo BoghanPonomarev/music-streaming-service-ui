@@ -14,7 +14,7 @@ export default () => ({
             rewrites: [{from: /./, to: `/index.html`}]
         },
         open: true,
-        port: 9091,
+        port: 8080,
         publicPath: `/`,
         host: "localhost"
     },
