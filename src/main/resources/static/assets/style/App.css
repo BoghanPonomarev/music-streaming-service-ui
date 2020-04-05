@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+strong, b{
+  opacity: 0.95;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -40,4 +44,26 @@
 img{
   height: 100%;
   width: 100%;
+}
+
+#plr-back-btn {
+  opacity: 0.95;
+  position: absolute;
+  margin-right: 90%;
+  margin-bottom: 10%;
+  margin-top: 30px;
+  border-bottom: none;
+  text-decoration: none;
+  left: 3%;
+}
+
+#back-arrow-img{
+  height: 27px;
+  width: 27px;
+}
+
+#back-link-container{
+  display: block;
+  position: relative;
+  height: 83px;
 }

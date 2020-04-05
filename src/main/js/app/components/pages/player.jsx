@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as constants from 'app/constants/constants';
 
 import '../../../../resources/static/assets/style/App.css';
+import BackArrow from '../../../../resources/static/assets/fonts/arrow/back-arrow.png';
 import '../../../../resources/static/assets/style/main.css';
 import '../../../../resources/static/assets/style/video.css';
 
@@ -22,19 +23,26 @@ export class Player extends React.Component {
     }
 
     render() {
+        const videoProps = {
+            disablePictureInPicture : true
+        };
         return (
             <div className="App">
                 <Header/>
-
-                <Link to="/application" >Back</Link>
+                <div id="back-link-container">
+                <Link id="plr-back-btn" to="/application" ><img id="back-arrow-img" src={BackArrow}/></Link>
                 <Switch>
                     <Route exact path="/application" component={HomeLayout} />
                 </Switch>
 
+                </div>
+
                 <div id="video-wrapper">
-                    <ReactHLS
+                    <div className="rc">
+                    <ReactHLS id="video"
                         url={constants.SERVER_DOMAIN + "/api/v1/streams/" + this.props.match.params.streamName + "/playlist"}
-                        autoplay={true}/>
+                        autoplay={true} videoProps={videoProps}></ReactHLS>
+                    </div>
                 </div>
             </div>
         );

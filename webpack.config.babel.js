@@ -14,9 +14,15 @@ export default () => ({
             rewrites: [{from: /./, to: `/index.html`}]
         },
         open: true,
-        port: 8080,
+        compress: true,
+        disableHostCheck: true,
+        public: '0.0.0.0',
+        allowedHosts: [
+            '.elasticbeanstalk.com'
+        ],
+        port: 9000,
         publicPath: `/`,
-        host: "localhost"
+        host: "0.0.0.0"
     },
     entry: {
         index: path.join(__dirname, 'src/main/js/app/index.jsx')
