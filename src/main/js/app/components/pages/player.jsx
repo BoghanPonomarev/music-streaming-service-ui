@@ -12,7 +12,7 @@ import ReactHLS from 'react-hls-player';
 import Hls from "hls.js";
 import {BrowserRouter as Router,Route,Switch, Link} from "react-router-dom";
 import {HomeLayout} from "./home";
-import Header from "../Header";
+import PlaylistHeader from "../PlaylistHeader";
 
 
 export class Player extends React.Component {
@@ -28,7 +28,7 @@ export class Player extends React.Component {
         };
         return (
             <div className="App">
-                <Header/>
+                <PlaylistHeader/>
                 <div id="back-link-container">
                 <Link id="plr-back-btn" to="/application" ><img id="back-arrow-img" src={BackArrow}/></Link>
                 <Switch>
@@ -38,11 +38,9 @@ export class Player extends React.Component {
                 </div>
 
                 <div id="video-wrapper">
-                    <div className="rc">
                     <ReactHLS id="video"
                         url={constants.SERVER_DOMAIN + "/api/v1/streams/" + this.props.match.params.streamName + "/playlist"}
                         autoplay={true} videoProps={videoProps}></ReactHLS>
-                    </div>
                 </div>
             </div>
         );
