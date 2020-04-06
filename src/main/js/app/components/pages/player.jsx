@@ -24,8 +24,15 @@ export class Player extends React.Component {
 
     render() {
         const videoProps = {
-            disablePictureInPicture : true
+            disablePictureInPicture : true,
         };
+
+        const hlsConfig = {
+            maxBufferLength: 60,
+            liveDurationInfinity: true,
+            liveBackBufferLength: 50
+        };
+
         return (
             <div className="App">
                 <PlaylistHeader/>
@@ -40,7 +47,7 @@ export class Player extends React.Component {
                 <div id="video-wrapper">
                     <ReactHLS id="video"
                         url={constants.SERVER_DOMAIN + "/api/v1/streams/" + this.props.match.params.streamName + "/playlist"}
-                        autoplay={true} videoProps={videoProps}></ReactHLS>
+                        autoplay={true} videoProps={videoProps} hlsConfig={hlsConfig}></ReactHLS>
                 </div>
             </div>
         );
