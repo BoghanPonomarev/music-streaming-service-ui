@@ -20,7 +20,7 @@ export default () => ({
         allowedHosts: [
             '.elasticbeanstalk.com'
         ],
-        port: 9000,
+        port: 8080,
         publicPath: `/`,
         host: "0.0.0.0"
     },
