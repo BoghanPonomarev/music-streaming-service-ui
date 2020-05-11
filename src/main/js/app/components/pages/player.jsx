@@ -28,9 +28,8 @@ export class Player extends React.Component {
         };
 
         const hlsConfig = {
-            maxBufferLength: 30,//60
-            debug: true,
-            liveBackBufferLength: 25//50
+            maxBufferLength: 30,
+            liveBackBufferLength: 25
         };
 
         return (
