@@ -1,1 +1,1 @@
-export const SERVER_DOMAIN = process.env.API_URL;
+export const SERVER_DOMAIN = "http://localhost:8080";

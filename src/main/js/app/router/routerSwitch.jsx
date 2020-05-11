@@ -14,5 +14,7 @@ export default () => (
         <Route exact path={routes.adminStreamList()} component={AdminStreamsList}/>
         <Route exact path={routes.adminStreamPage()} component={AdminStreamPage}/>
         <Route exact path={routes.adminLoginPage()} component={AdminLogin}/>
+
+        <Route component={HomeLayout}/>
     </Switch>
 );

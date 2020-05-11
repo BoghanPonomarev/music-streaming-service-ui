@@ -12,9 +12,9 @@ function PlaylistHeader(props) {
         <div>
             <header id="header">
                 <div id="back-link-container-btm">
-                    <Link id="plr-back-btn" to="/application" ><img id="back-arrow-img" src={BackArrow}/></Link>
+                    <Link id="plr-back-btn" to="/" ><img id="back-arrow-img" src={BackArrow}/></Link>
                     <Switch>
-                        <Route exact path="/application" component={HomeLayout} />
+                        <Route exact path="/" component={HomeLayout} />
                     </Switch>
 
                 </div>

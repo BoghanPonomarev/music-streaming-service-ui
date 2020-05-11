@@ -9,8 +9,6 @@ import * as constants from 'app/constants/constants';
 import $ from 'jquery'
 import {BrowserRouter as Router, Link} from "react-router-dom";
 
-const publicPath = process.env.ASSET_PATH;
-
 export class AdminStreamsList extends React.Component {
 
     constructor(props){
@@ -19,6 +17,10 @@ export class AdminStreamsList extends React.Component {
         this.requestStreamList = this.requestStreamList.bind(this);
         this.requestNewStreamCreation = this.requestNewStreamCreation.bind(this);
         this.requestDeleteStream = this.requestDeleteStream.bind(this);
+
+        if(localStorage.getItem("token") == null) {
+            this.props.history.push('/');
+        }
     }
 
     render() {
@@ -54,7 +56,7 @@ export class AdminStreamsList extends React.Component {
                 for(var i=0;i<response.length;i++) {
                     var streamName = response[i].streamName;
                     console.log(streamName);
-                    $("#stream-list").append("<a href='/"+  publicPath +"/admin/streams/" + streamName +"' >" + streamName + "</a> status:" + response[i].status);
+                    $("#stream-list").append("<a href='/admin/streams/" + streamName +"' >" + streamName + "</a> status:" + response[i].status);
                     $("#stream-list").append("<button id='delete-stream-btn-"+streamName+"'>Delete</button> </br>");
                     $("#delete-stream-btn-"+streamName).on('click', this.requestDeleteStream.bind(this, streamName));
                 }

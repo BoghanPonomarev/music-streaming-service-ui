@@ -7,7 +7,7 @@ import '../../../resources/static/assets/style/main.css';
 function Header(props) {
     return (
         <header id="header">
-            <h1><a href="../main/js/app/components/App.js"><strong>Nine Sounds</strong></a></h1>
+            <h1><strong>Nine Sounds</strong></h1>
         </header>
     );
 }

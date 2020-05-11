@@ -15,12 +15,20 @@ export class AdminStreamPage extends React.Component {
         this.requestStream = this.requestStream.bind(this);
         this.readVideo = this.readVideo.bind(this);
         this.readAudio = this.readAudio.bind(this);
+        this.readPreview = this.readPreview.bind(this);
+        this.readContent = this.readContent.bind(this);
         this.requestUpdateVideo = this.requestUpdateVideo.bind(this);
         this.requestUpdateAudio = this.requestUpdateAudio.bind(this);
+        this.requestUpdatePreview = this.requestUpdatePreview.bind(this);
+        this.requestUpdateContent = this.requestUpdateContent.bind(this);
         this.requestDeleteAudio = this.requestDeleteAudio.bind(this);
         this.requestStreamStatusChange = this.requestStreamStatusChange.bind(this);
         this.requestCompileStream = this.requestCompileStream.bind(this);
         this.requestUpdateTitle = this.requestUpdateTitle.bind(this);
+
+        if(localStorage.getItem("token") == null) {
+            this.props.history.push('/');
+        }
     }
 
     render() {
@@ -43,6 +51,20 @@ export class AdminStreamPage extends React.Component {
                         <input id="video-upload" type="file" accept="*/*"/>
                         <button id="update-video-btn" onClick={this.readVideo}>Update</button>
                     </div>
+
+                    Preview: <br/>
+                    <img id="preview-img" alt=""/><br/>
+                    <div id="new-stream-preview-block">
+                        <input id="preview-upload" type="file" accept="*/*"/>
+                        <button id="update-preview-btn" onClick={this.readPreview}>Update preview</button>
+                    </div>
+                    Compiled content: <br/>
+                    <video id="compiled-content-file" controls>
+                        </video><br/>
+                    <div id="new-stream-content-block">
+                        <input id="content-upload" type="file" accept="*/*"/>
+                        <button id="update-content-btn" onClick={this.readContent}>Update content</button>
+                    </div><br/>
                 </div>
                 <br/>
                 <div id="audio-block">
@@ -77,6 +99,8 @@ export class AdminStreamPage extends React.Component {
                 $("#stream-status").append("Status: " + response.status);
                 $("#stream-portion-id").append("Stream Portion: " + response.streamIteration);
                 $("#admin-video").attr("src", constants.SERVER_DOMAIN + '/api/v1/videos/' + response.videoIdList[0]);
+                $("#preview-img").attr("src", constants.SERVER_DOMAIN + '/api/v1/streams/' + response.streamName + "/pr");
+                $("#compiled-content-file").attr("src", constants.SERVER_DOMAIN + '/api/v1/streams/' + response.streamName + "/contentfile");
 
                 var audioList = response.audioIdList;
                 for(var i=0;i<audioList.length;i++) {
@@ -100,8 +124,13 @@ export class AdminStreamPage extends React.Component {
 
                 if(response.status !== "CREATED") {
                     $("#compile-stream-btn-block").append("<button id=\"compile-stream-btn\">Compile</button>");
-                    $("#compile-stream-btn").on('click', this.requestCompileStream.bind(this));
+                    $("#compile-stream-btn").on('click', this.requestCompileStream.bind(this, false));
                 }
+
+
+                $("#compile-stream-btn-block").append("<button id=\"min-compile-stream-btn\">Minor Compile</button>");
+                $("#min-compile-stream-btn").on('click', this.requestCompileStream.bind(this, true));
+
             },
             error: function(jqXHR){
                 console.log(jqXHR);
@@ -109,16 +138,21 @@ export class AdminStreamPage extends React.Component {
         });
     }
 
-    requestCompileStream() {
+    requestCompileStream(isOnlyTsRecompilation) {
         const token = localStorage.getItem('token');
+
+        var data = {
+            isOnlyTsRecompilation: isOnlyTsRecompilation
+        };
 
         $.ajax({
             headers: {"Authorization": token},
             cache: false,
             processData: false,
-            contentType: false,
+            contentType: 'application/json',
             url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/compile",
             type: 'post',
+            data: JSON.stringify(data),
             success: function (response) {
                 console.log(response);
                 window.location.reload(false);
@@ -133,13 +167,18 @@ export class AdminStreamPage extends React.Component {
         const token = localStorage.getItem('token');
 
         if(status === "CREATED") {
+            var data = {
+                isOnlyTsRecompilation: false,
+            };
+
             $.ajax({
                 headers: {"Authorization": token},
                 cache: false,
                 processData: false,
-                contentType: false,
+                contentType: 'application/json',
                 url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/compile",
                 type: 'post',
+                data: JSON.stringify(data),
                 success: function (response) {
                     console.log(response);
                     window.location.reload(false);
@@ -164,6 +203,20 @@ export class AdminStreamPage extends React.Component {
                     console.log(jqXHR);
                 }
             });
+        }
+    }
+
+    readContent() {
+        var input = $("#content-upload");
+        if (input[0] && input[0].files[0]) {
+            this.requestUpdateContent(input[0].files[0]);
+        }
+    }
+
+    readPreview() {
+        var input = $("#preview-upload");
+        if (input[0] && input[0].files[0]) {
+            this.requestUpdatePreview(input[0].files[0]);
         }
     }
 
@@ -194,6 +247,54 @@ export class AdminStreamPage extends React.Component {
             header: {"Content-type" : "multipart/form-data"},
             data: videoData,
             url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/video",
+            type: 'put',
+            success: function (response) {
+                console.log(response);
+                window.location.reload(false);
+            },
+            error: function(jqXHR){
+                console.log(jqXHR);
+            }
+        });
+    }
+
+    requestUpdatePreview(video){
+        var videoData = new FormData();
+        videoData.append('preview', video);
+        const token = localStorage.getItem('token');
+
+        $.ajax({
+            headers: {'Authorization': token},
+            cache: false,
+            processData: false,
+            contentType: false,
+            header: {"Content-type" : "multipart/form-data"},
+            data: videoData,
+            url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/pr",
+            type: 'put',
+            success: function (response) {
+                console.log(response);
+                window.location.reload(false);
+            },
+            error: function(jqXHR){
+                console.log(jqXHR);
+            }
+        });
+    }
+
+    requestUpdateContent(content){
+        var contentData = new FormData();
+        contentData.append('content', content);
+        const token = localStorage.getItem('token');
+
+        $.ajax({
+            headers: {'Authorization': token},
+            cache: false,
+            processData: false,
+            contentType: false,
+            header: {"Content-type" : "multipart/form-data"},
+            data: contentData,
+            url: constants.SERVER_DOMAIN + '/api/v1/admin/streams/' + this.props.match.params.streamName +"/contentfile",
             type: 'put',
             success: function (response) {
                 console.log(response);

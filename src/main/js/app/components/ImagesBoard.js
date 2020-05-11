@@ -49,7 +49,7 @@ export class ImagesBoard extends React.Component {
                 console.log(response);
                 for (var i = 0; i < response.length; i++) {
                     var streamName = response[i].streamName;
-                    this.streamList.push(<ImageBox streamTitle={response[i].streamTitle} pageLink={"/application/streams/" + streamName} imagePath={constants.SERVER_DOMAIN + "/api/v1/streams/" + streamName + "/pr"}/>);
+                    this.streamList.push(<ImageBox streamTitle={response[i].streamTitle} pageLink={"/streams/" + streamName} imagePath={constants.SERVER_DOMAIN + "/api/v1/streams/" + streamName + "/pr"}/>);
                 }
                 this.refreshWithData(this.streamList);
             },

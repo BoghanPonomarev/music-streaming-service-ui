@@ -28,18 +28,18 @@ export class Player extends React.Component {
         };
 
         const hlsConfig = {
-            maxBufferLength: 60,
-            liveDurationInfinity: true,
-            liveBackBufferLength: 50
+            maxBufferLength: 30,//60
+            debug: true,
+            liveBackBufferLength: 25//50
         };
 
         return (
             <div className="App">
                 <PlaylistHeader/>
                 <div id="back-link-container">
-                <Link id="plr-back-btn" to="/application" ><img id="back-arrow-img" src={BackArrow}/></Link>
+                <Link id="plr-back-btn" to="/" ><img id="back-arrow-img" src={BackArrow}/></Link>
                 <Switch>
-                    <Route exact path="/application" component={HomeLayout} />
+                    <Route exact path="/" component={HomeLayout} />
                 </Switch>
 
                 </div>
@@ -52,6 +52,7 @@ export class Player extends React.Component {
             </div>
         );
     }
+
 }
 
 export default Player;

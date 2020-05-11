@@ -2,13 +2,13 @@
 const publicPath = process.env.ASSET_PATH;
 
 // Index route
-export const index = () => `/${publicPath}/`;
+export const index = () => `/`;
 
-export const play = () => `/${publicPath}/streams/:streamName`;
+export const play = () => `/streams/:streamName`;
 
-export const adminLoginPage = () => `/${publicPath}/admin/login`;
+export const adminLoginPage = () => `/admin/login`;
 
-export const adminStreamList = () => `/${publicPath}/admin/streams`;
+export const adminStreamList = () => `/admin/streams`;
 
-export const adminStreamPage = () =>  `/${publicPath}/admin/streams/:streamName`;
+export const adminStreamPage = () =>  `/admin/streams/:streamName`;
 
