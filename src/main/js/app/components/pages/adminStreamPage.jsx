@@ -70,7 +70,7 @@ export class AdminStreamPage extends React.Component {
                 <div id="audio-block">
                 <h3>Audios</h3>
                     <div id="new-stream-audio-block">
-                        <input id="audio-upload" type="file" accept="*/*"/>
+                        <input id="audio-upload" type="file" accept="*/*" multiple/>
                         <button id="update-audio-btn" onClick={this.readAudio}>Add</button>
                     </div>
                 </div>
@@ -229,8 +229,12 @@ export class AdminStreamPage extends React.Component {
 
     readAudio() {
         var input = $("#audio-upload");
-        if (input[0] && input[0].files[0]) {
-            this.requestUpdateAudio(input[0].files[0]);
+        
+        if(input[0]) {
+            for (var i=0; i<input[0].files.length; i++)
+                if (input[0].files[i]) {
+                    this.requestUpdateAudio(input[0].files[i]);
+                }
         }
     }
 
@@ -308,7 +312,7 @@ export class AdminStreamPage extends React.Component {
 
     requestUpdateAudio(audio){
         var videoData = new FormData();
-        videoData.append('audio', audio);
+        videoData.append('audios', audio);
         const token = localStorage.getItem('token');
 
         $.ajax({

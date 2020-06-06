@@ -18,7 +18,7 @@ function PlaylistHeader(props) {
                     </Switch>
 
                 </div>
-                <h1><a href="../main/js/app/components/App.js"><strong>Nine Sounds</strong></a></h1>
+                <h1><a href="/"><strong>Nine Sounds</strong></a></h1>
             </header>
         </div>
     );

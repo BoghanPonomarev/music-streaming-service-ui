@@ -76,6 +76,8 @@ img{
 }
 
 @media screen and (max-width: 736px) {
+
+
   #back-link-container-btm{
     display: block;
   }

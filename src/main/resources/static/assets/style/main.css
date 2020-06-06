@@ -89,6 +89,15 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;}
 
+
+
+#stream-image {
+	padding: 9px;
+	border-radius: 35px;
+	padding-top: 15px;
+	padding-bottom: 3px;
+}
+
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
@@ -1616,10 +1625,10 @@ input, select, textarea {
 		}
 
 			#main .thumb:after {
-				background-image: -moz-linear-gradient(to top, rgba(10,17,25,0.35) 5%, rgba(10,17,25,0) 35%);
+/*				background-image: -moz-linear-gradient(to top, rgba(10,17,25,0.35) 5%, rgba(10,17,25,0) 35%);
 				background-image: -webkit-linear-gradient(to top, rgba(10,17,25,0.35) 5%, rgba(10,17,25,0) 35%);
 				background-image: -ms-linear-gradient(to top, rgba(10,17,25,0.35) 5%, rgba(10,17,25,0) 35%);
-				background-image: linear-gradient(to top, rgba(10,17,25,0.35) 5%, rgba(10,17,25,0) 35%);
+				background-image: linear-gradient(to top, rgba(10,17,25,0.35) 5%, rgba(10,17,25,0) 35%);*/
 				pointer-events: none;
 				background-size: cover;
 				content: '';
@@ -1802,7 +1811,7 @@ input, select, textarea {
 				transition-delay: 2.075s;
 				height: calc(40vh - 2em);
 				min-height: 20em;
-				width: 33.33333%;
+				width: 25%;
 			}
 
 				#main .thumb:nth-child(1) {
@@ -1879,7 +1888,7 @@ input, select, textarea {
 				transition-delay: 1.625s;
 				height: calc(40vh - 2em);
 				min-height: 20em;
-				width: 50%;
+				width: 33.333%;
 			}
 
 				#main .thumb:nth-child(1) {
@@ -1935,7 +1944,7 @@ input, select, textarea {
 				transition-delay: 2.075s;
 				height: calc(28.57143vh - 1.33333em);
 				min-height: 18em;
-				width: 50%;
+				width: 33.333%;
 			}
 
 				#main .thumb:nth-child(1) {
@@ -2002,6 +2011,19 @@ input, select, textarea {
 				}
 
 		}
+
+@media screen and (max-width: 736px) {
+
+	#main .thumb {
+		-moz-transition-delay: 1.175s;
+		-webkit-transition-delay: 1.175s;
+		-ms-transition-delay: 1.175s;
+		transition-delay: 1.175s;
+		height: calc(40vh - 2em);
+		min-height: 18em;
+		width: 50%;
+	}
+}
 
 		@media screen and (max-width: 480px) {
 

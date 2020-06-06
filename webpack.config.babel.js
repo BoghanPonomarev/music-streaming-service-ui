@@ -16,13 +16,13 @@ export default () => ({
         open: true,
         compress: true,
         disableHostCheck: true,
-        public: '0.0.0.0',
+        public: 'localhost', //0.0.0.0 - for aws
         allowedHosts: [
             '.elasticbeanstalk.com'
         ],
         port: 8080,
         publicPath: `/`,
-        host: "0.0.0.0"
+        host: "localhost" //0.0.0.0 - for aws
     },
     entry: {
         index: path.join(__dirname, 'src/main/js/app/index.jsx')
@@ -72,7 +72,7 @@ export default () => ({
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env': {ASSET_PATH: JSON.stringify(publicPath)}
+            'process.env': process.env
         }),
         new MiniCssExtractPlugin({
             filename: 'assets/stylesheets/[name]/[hash].css'
