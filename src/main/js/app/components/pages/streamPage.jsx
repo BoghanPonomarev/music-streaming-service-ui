@@ -11,11 +11,11 @@ import '../../../../resources/static/assets/style/video.css';
 import ReactHLS from 'react-hls-player';
 import Hls from "hls.js";
 import {BrowserRouter as Router,Route,Switch, Link} from "react-router-dom";
-import {HomeLayout} from "./home";
+import {StreamListLayout} from "./streamList";
 import PlaylistHeader from "../PlaylistHeader";
 
 
-export class Player extends React.Component {
+export class StreamPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -38,7 +38,7 @@ export class Player extends React.Component {
                 <div id="back-link-container">
                 <Link id="plr-back-btn" to="/" ><img id="back-arrow-img" src={BackArrow}/></Link>
                 <Switch>
-                    <Route exact path="/" component={HomeLayout} />
+                    <Route exact path="/" component={StreamListLayout} />
                 </Switch>
 
                 </div>
@@ -54,4 +54,4 @@ export class Player extends React.Component {
 
 }
 
-export default Player;
+export default StreamPage;

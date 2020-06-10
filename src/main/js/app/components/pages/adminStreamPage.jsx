@@ -231,10 +231,7 @@ export class AdminStreamPage extends React.Component {
         var input = $("#audio-upload");
         
         if(input[0]) {
-            for (var i=0; i<input[0].files.length; i++)
-                if (input[0].files[i]) {
-                    this.requestUpdateAudio(input[0].files[i]);
-                }
+            this.requestUpdateAudio(input[0].files);
         }
     }
 
@@ -310,9 +307,14 @@ export class AdminStreamPage extends React.Component {
         });
     }
 
-    requestUpdateAudio(audio){
+    requestUpdateAudio(audiosArray){
         var videoData = new FormData();
-        videoData.append('audios', audio);
+
+        for (var i=0; i<audiosArray.length; i++) {
+            videoData.append('audios', audiosArray[i]);
+        }
+
+
         const token = localStorage.getItem('token');
 
         $.ajax({
