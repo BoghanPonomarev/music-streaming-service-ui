@@ -44,9 +44,12 @@ export class StreamPage extends React.Component {
                 </div>
 
                 <div id="video-wrapper">
+                  <div className="inner-video">
                     <ReactHLS id="video"
                         url={constants.SERVER_DOMAIN + "/api/v1/streams/" + this.props.match.params.streamName + "/playlist"}
                         autoplay={true} videoProps={videoProps} hlsConfig={hlsConfig}></ReactHLS>
+                     <div className="video-icon-online"><span className="icon-circle"></span> online</div>
+                    </div> 
                 </div>
             </div>
         );

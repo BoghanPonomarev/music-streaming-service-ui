@@ -32,4 +32,30 @@ video{
     outline:none;
 }
 
+.inner-video {
+    max-width: 1000px;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.video-icon-online {
+    position: absolute;
+    z-index: 2;
+    bottom: .8rem; 
+    left: 3rem;
+    padding: .4rem .9rem;
+    text-transform: uppercase;
+    color:rgb(255, 255, 255)
+}
+
+.icon-circle {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    background-color: rgb(185, 30, 30);
+    border-radius: 50px;
+    margin-bottom: .1rem;
+}
+
 

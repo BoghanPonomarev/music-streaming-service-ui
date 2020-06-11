@@ -11,8 +11,13 @@ function ImageBox(props) {
     return (
         <Router>
         <article className="thumb">
-            <a href={props.pageLink} className="image"><img id="stream-image" src={props.imagePath} alt=""/></a>
-            <h2>{props.streamTitle}</h2>
+        <div className="thumb-icon">lofi</div>
+            <a href={props.pageLink} className="image">        
+                   <img id="stream-image" src={props.imagePath} alt=""/>
+            </a>
+              <div className="wrapper-title">
+                <h2>{props.streamTitle}</h2>
+              </div>
         </article>
         </Router>
     );
