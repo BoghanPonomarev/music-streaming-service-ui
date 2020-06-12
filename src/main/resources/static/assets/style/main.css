@@ -1639,7 +1639,7 @@ input, select, textarea {
 				top: 0;
 				width: 100%;
 			}
-
+     
 			#main .thumb > .image {
 				-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 				background-position: center;
@@ -1648,21 +1648,48 @@ input, select, textarea {
 				border: 0;
 				height: 100%;
 				left: 0;
-				position: absolute;
+        position: absolute;
 				top: 0;
 				width: 100%;
 			}
 
-			#main .thumb > h2 {
+			#main .thumb > .wrapper-title {
+				width: 95.2%;
+				height: 4rem;
 				pointer-events: none;
-				bottom: 1.875em;
-				font-size: 0.8em;
-				left: 2.1875em;
+				padding-top: 1.2rem;
+				bottom: 0;
+				border: 1px solid #282c34;
+				border-top: none; 
+				left: 0.55rem;
 				margin: 0;
 				position: absolute;
 				z-index: 1;
+				border-top:none;
+				background-color: rgba(63, 69, 73, 0.7);
+				-webkit-backdrop-filter: blur(10px); 
+				backdrop-filter: blur(10px); 
+				border-bottom-left-radius: 35px;
+				border-bottom-right-radius: 35px;
 			}
 
+			#main .thumb > .wrapper-title > h2 {
+				font-size: 0.8em;
+			}
+
+			#main .thumb > .thumb-icon {
+				position: absolute;
+				padding: .3rem 1rem;
+				border-radius: 12px;
+				z-index: 1;
+				top: 1.6rem;
+				right: 1.3rem;
+				color:white;
+				-webkit-backdrop-filter: blur(10px); 
+				backdrop-filter: blur(10px); 
+				background-color: rgba(63, 69, 73, 0.6);
+			}
+			 
 			#main .thumb > p {
 				display: none;
 			}
@@ -1933,6 +1960,10 @@ input, select, textarea {
 					transition-delay: 1.4s;
 				}
 
+				#main .thumb > .wrapper-title {
+	        width: 95.4%;
+				}
+
 		}
 
 		@media screen and (max-width: 980px) {
@@ -2010,6 +2041,11 @@ input, select, textarea {
 					transition-delay: 1.85s;
 				}
 
+				#main .thumb > .wrapper-title {
+	        width: 94%;
+				}
+
+
 		}
 
 @media screen and (max-width: 736px) {
@@ -2023,6 +2059,10 @@ input, select, textarea {
 		min-height: 18em;
 		width: 50%;
 	}
+	#main .thumb > .wrapper-title {
+		width: 95%;
+	}
+
 }
 
 		@media screen and (max-width: 480px) {
@@ -2058,6 +2098,17 @@ input, select, textarea {
 					transition-delay: 0.95s;
 				}
 
+				#main .thumb > .wrapper-title {
+					width: 96.2%;
+					padding-top: 1.4rem;
+				}
+
+		}
+
+		@media screen and (max-width: 380px) {
+			#main .thumb > .wrapper-title {
+				width: 95.1%;
+			}
 		}
 
 /* Footer */
